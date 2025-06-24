@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Booking - Go Voila</title>
+  <style>
+    :root {
+      --primary: #ffffff;
+      --light-blue: #add8e6;
+      --hover-blue: #cce6f5;
+      --text-blue: #5ab6e6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: url('https://plus.unsplash.com/premium_photo-1682142182464-3be6161b3a42?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fHRyYXZlbCUyMGFlc3RoZXRpYyUyMGFlcm9wbGFuZXxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: var(--text-blue);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: -1;
+    }
+
+    /* Header and Navigation */
+    .mobile-header,
+    .desktop-nav {
+      padding: 12px 20px;
+      background: var(--primary);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .mobile-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .mobile-header .brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.40em;
+  font-weight: bold;
+  color: var(--text-blue);
+}
+
+    .nav-toggle {
+      display: none;
+    }
+
+    .hamburger-label {
+      font-size: 1.5em;
+      cursor: pointer;
+      color: var(--text-blue);
+    }
+
+    .side-nav {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: var(--primary);
+      padding-top: 60px;
+      transition: left 0.3s;
+      z-index: 999;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    }
+
+    .nav-toggle:checked ~ .side-nav {
+      left: 0;
+    }
+
+    .side-nav a {
+      display: block;
+      padding: 15px 25px;
+      color: var(--text-blue);
+      text-decoration: none;
+    }
+
+    .side-nav a:hover {
+      background-color: var(--hover-blue);
+    }
+
+    .desktop-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      z-index: 1000;
+    }
+
+    .desktop-nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      list-style: none;
+    }
+
+    .desktop-nav li {
+      margin: 0 20px;
+    }
+
+    .desktop-nav a {
+      text-decoration: none;
+      font-weight: bold;
+      color: var(--text-blue);
+    }
+
+    .desktop-nav a:hover {
+      color: var(--hover-blue);
+    }
+
+    @media(min-width: 768px) {
+      .mobile-header,
+      .hamburger-label,
+      .side-nav {
+        display: none;
+      }
+      .desktop-nav {
+        display: block;
+      }
+    }
+
+    .hero {
+      margin-top: 70px;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.1rem;
+      color: white;
+    }
+    .hero1{
+       margin-top: 70px;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.6rem;
+      color: white;
+    }
+    
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* Form and Response Handling */
+    #response:target ~ .form-container {
+      display: none;
+    }
+
+    #response:target ~ #response-box {
+      display: block;
+    }
+
+    .form-container form {
+      background-color: rgba(255,255,255,0.95);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .form-container input,
+    .form-container select,
+    .form-container textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-container button {
+      padding: 10px;
+      background-color: var(--text-blue);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background-color: #4aa5d3;
+    }
+
+  #response-box {
+  display: none;
+  text-align: center;
+  font-size: 1.2rem;
+  color:var(--text-blue);
+  background: rgba(46, 46, 46, 0.692);
+  padding: 10px;
+  max-width: 500px;
+  font-weight: bold;
+  margin: 20px  auto;
+  
+}
+
+    .back-link {
+      display: none;
+      color: var(--text-blue);
+border:#ffffff 1px solid;
+border-radius: 5px;
+font-weight: bold;
+background-color:transparent;
+padding: 10px;
+      font-size: 1rem;
+      text-decoration:  none;
+      font-weight: bold;
+      margin-top: 10px;
+      display: inline-block;
+      
+      
+    }
+    .back-link:hover {
+      background-color: #4aa5d3;
+      color: white;
+    }
+
+    #response:target ~ #response-box .back-link {
+      display: inline-block;
+    }
+
+    /* Grid Section */
+    .grid-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: flex-start;
+    }
+
+    .grid-section .card {
+      flex: 1 1 calc(25% - 20px);
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      min-height: 130px;
+    }
+
+    .grid-section .card:nth-last-child(1):nth-child(4n+1) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  .link1 {
+  color: #444;
+  text-decoration: none;
+  
+}
+
+.link1:hover {
+  color: #3399cc;
+}
+    footer {
+      background: #ffffff;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #444;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <div class="mobile-header">
+    <label for="nav-toggle" class="hamburger-label">☰</label>
+    <div class="brand">Go Voila</div>
+  </div>
+
+  <div class="side-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="packages.html">Packages</a>
+    <a href="booking.html">Booking</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <nav class="desktop-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="booking.html">Booking</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <h2>Book Your Journey</h2>
+  </div>
+
+  <a id="response" style="position: fixed; top: 0;"></a>
+
+
+  <div id="response-box" class="container">
+    Thank you! We'll confirm your booking shortly.<br><br>
+    <a href="booking.html" class="back-link"> Back to Form</a>
+  </div>
+
+  <div class="container form-container">
+    <form action="#response" method="get">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="destination">Select Package:</label>
+      <select id="destination" name="destination" required>
+        <option value="">--Select Destination--</option>
+        <option>Leh Ladakh</option>
+        <option>Kashmir</option>
+        <option>Rishikesh</option>
+        <option>Maldives</option>
+        <option>Switzerland</option>
+        <option>Italy</option>
+        <option>Dubai</option>
+        <option>South India</option>
+        <option>Ooty</option>
+        <option>Hampi</option>
+        <option>Meghalaya</option>
+        <option>Japan</option>
+      </select>
+
+      <label for="people">Number of People:</label>
+      <input type="number" id="people" name="people" min="1" required>
+
+      <label for="date">Travel Date:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="requests">Special Requests:</label>
+      <textarea id="requests" name="requests" rows="4"></textarea>
+
+      <button type="submit">Submit Booking</button>
+    </form>
+  </div>
+
+  <h2 class="hero1">Tips for a Smooth Journey</h2>
+  <div class="container grid-section">
+    <div class="card">Pack light but smart — carry essentials only.</div>
+    <div class="card">Double-check your documents: ID, tickets, bookings.</div>
+    <div class="card">Stay hydrated and well-rested before travel.</div>
+    <div class="card">Download offline maps of your destination.</div>
+  </div>
+
+  <h2 class="hero1">Travel Instructions</h2>
+  <div class="container grid-section">
+    <div class="card">Arrive at the pickup point 30 minutes early.</div>
+    <div class="card">Carry a government-issued photo ID.</div>
+    <div class="card">Follow safety guidelines during tours.</div>
+    <div class="card">Contact your tour manager in case of any issues.</div>
+  </div>
+
+  <h2 class="hero1">Other Activities You Can Book</h2>
+  <div class="container grid-section">
+    <div class="card">Paragliding</div>
+    <div class="card">Desert Safari</div>
+    <div class="card">Wine Tasting</div>
+    <div class="card">Scuba Diving</div>
+  </div>
+
+  <footer>
+    © 2025, All rights reserved.<br>
+    Designed and Developed by <a href="https://github.com/vainawiyasri" target="_blank" class="link1">Vainawiyasri</a>
+  </footer>
+</body>
+</html>

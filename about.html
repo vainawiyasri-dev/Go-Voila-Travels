@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About – Go Voila</title>
+  <style>
+    :root {
+      --primary: #ffffff;
+      --hover-blue: #cce6f5;
+      --text-blue: #5ab6e6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: url('https://images.unsplash.com/photo-1643327070016-9d2ef5044149?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGZlbWFsZSUyMGNlbyUyMHdvcmtpbmd8ZW58MHx8MHx8fDA%3D') no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      min-height: 100vh;
+      color: var(--text-blue);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: -1;
+    }
+
+    .mobile-header,
+    .desktop-nav {
+      padding: 12px 20px;
+      width: 100%;
+      background: var(--primary);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .mobile-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      height: 60px;
+    }
+
+    .mobile-header .brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.40em;
+      font-weight: bold;
+      color: var(--text-blue);
+    }
+
+    .nav-toggle {
+      display: none;
+    }
+
+    .hamburger-label {
+      font-size: 1.5em;
+      cursor: pointer;
+      color: var(--text-blue);
+    }
+
+    .side-nav {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      height: 100%;
+      width: 250px;
+      background: var(--primary);
+      padding-top: 60px;
+      transition: left 0.3s;
+      z-index: 999;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    }
+
+    .nav-toggle:checked ~ .side-nav {
+      left: 0;
+    }
+
+    .side-nav a {
+      display: block;
+      padding: 15px 25px;
+      color: var(--text-blue);
+      text-decoration: none;
+    }
+
+    .side-nav a:hover {
+      background-color: var(--hover-blue);
+    }
+
+    .desktop-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 60px;
+      z-index: 1000;
+      background: var(--primary);
+      width: 100%;
+    }
+
+    .desktop-nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      list-style: none;
+    }
+
+    .desktop-nav li {
+      margin: 0 20px;
+    }
+
+    .desktop-nav a {
+      text-decoration: none;
+      font-weight: bold;
+      color: var(--text-blue);
+    }
+
+    .desktop-nav a:hover {
+      color: var(--hover-blue);
+    }
+
+   .hero {
+  margin-top: 70px;
+  padding: 20px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: bold;
+}
+
+  .section {
+      background: transparent;
+      margin: 30px auto;
+      padding: 40px;
+      max-width: 1200px;
+      color: #ffffff;
+      border-radius: 10px;
+    }
+
+    .section h1,
+    .section h2 {
+      text-align: center;
+      color: white;
+      margin-bottom: 50px;
+      margin-top: 70px;
+    }
+
+    .section p {
+      text-align: justify;
+      line-height: 1.5;
+      
+      margin-bottom: 15px;
+      word-spacing: -1px;
+      margin-top: -60px;
+      color: #ffffff;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 0 10px;
+      margin-top: 20px;
+    }
+
+    .grid-item {
+      flex: 1 1 250px;
+      max-width: 280px;
+      min-height: 130px;
+      background: rgba(255, 255, 255, 0.85);
+      color: #005a9c;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .grid-item:hover {
+      background-color: var(--hover-blue);
+      transform: scale(1.05);
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .social-buttons a {
+      background-color: var(--text-blue);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .social-buttons a:hover {
+      background-color: #3399cc;
+    }
+
+    footer {
+      background: #ffffff;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #444;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #444;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--text-blue);
+    }
+
+    @media(min-width: 768px) {
+      .mobile-header,
+      .hamburger-label,
+      .side-nav {
+        display: none;
+      }
+
+      .desktop-nav {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <div class="mobile-header">
+    <label for="nav-toggle" class="hamburger-label">☰</label>
+    <div class="brand">Go Voila</div>
+  </div>
+
+  <div class="side-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="packages.html">Packages</a>
+    <a href="booking.html">Booking</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <nav class="desktop-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="booking.html">Booking</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <h1>About Go Voila</h1>
+  </div>
+
+  <div class="section">
+    <p>
+      Go Voila is your gateway to extraordinary adventures and unforgettable memories.
+Founded in 2020 by a group of passionate travelers in India, we set out to simplify and personalize the travel experience for everyone.
+From serene beaches to snowcapped mountains and bustling cityscapes, we help you explore the world effortlessly.
+Our platform offers curated stays, seamless bookings, and 24/7 support, designed for solo travelers, families, couples, and corporate groups alike.
+With over 50,000 successful bookings and access to 12,500+ destinations, Go Voila has become one of India’s most trusted travel brands.
+We believe travel should be about freedom, not stress - an experience that leaves you feeling inspired.
+Our mission is simple: to turn your dream vacation into reality with expert planning, unique experiences, and unmatched care.
+So pack your bags, leave the logistics to us, and get ready to Discover. Dream. Depart.
+    </p>
+
+    <h2>Our Achievements & Awards</h2>
+    <div class="grid">
+      <div class="grid-item">🏆 Best Travel Startup – 2024</div>
+      <div class="grid-item">🌟 98% Traveler Satisfaction</div>
+      <div class="grid-item">✈️ 50,000+ Successful Bookings</div>
+      <div class="grid-item">🌍 12,500+ Global Destinations</div>
+      <div class="grid-item">📱 Featured in Top 10 Travel Apps</div>
+      <div class="grid-item">💼 Partnered with 300+ Resorts & Airlines</div>
+    </div>
+
+    <h2>Connect With Us</h2>
+    <div class="social-buttons">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Go Voila. All rights reserved.<br>
+    Designed & Developed by <a href="https://github.com/vainawiyasri" target="_blank">Vainawiyasri</a>
+  </footer>
+
+</body>
+</html>

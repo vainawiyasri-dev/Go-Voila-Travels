@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Packages - Go Voila</title>
+  <style>
+    :root {
+      --primary: #ffffff;
+      --hover-blue: #cce6f5;
+      --text-blue: #5ab6e6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: url('https://cdn.pixabay.com/photo/2018/02/03/16/11/passport-3127927_1280.jpg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      color: var(--text-blue);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: -1;
+    }
+
+    /* Header */
+    .mobile-header,
+    .desktop-nav {
+      background: var(--primary);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 12px 20px;
+      width: 100%;
+    }
+
+    .mobile-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      height: 60px;
+      z-index: 1000;
+    }
+
+    .mobile-header .brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.40em;
+  font-weight: bold;
+  color: var(--text-blue);
+}
+    .nav-toggle {
+      display: none;
+    }
+
+    .hamburger-label {
+      font-size: 1.5em;
+      cursor: pointer;
+      color: var(--text-blue);
+    }
+
+    .side-nav {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      height: 100%;
+      width: 250px;
+      background: var(--primary);
+      padding-top: 60px;
+      transition: left 0.3s;
+      z-index: 999;
+    }
+
+    .nav-toggle:checked ~ .side-nav {
+      left: 0;
+    }
+
+    .side-nav a {
+      display: block;
+      padding: 15px 25px;
+      color: var(--text-blue);
+      text-decoration: none;
+    }
+
+    .side-nav a:hover {
+      background-color: var(--hover-blue);
+    }
+
+    .desktop-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 60px;
+      z-index: 1000;
+    }
+
+    .desktop-nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      list-style: none;
+    }
+
+    .desktop-nav li {
+      margin: 0 20px;
+    }
+
+    .desktop-nav a {
+      text-decoration: none;
+      font-weight: bold;
+      color: var(--text-blue);
+    }
+
+    .desktop-nav a:hover {
+      color:var(--text-blue);
+    }
+
+    .hero {
+  margin-top: 70px;
+  padding: 10px 15px; /* or padding: 10px 20px; */
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+}
+
+    .section-title {
+      text-align: center;
+      font-size: 1.45rem;
+      margin: 69px 0 20px;
+      color: white;
+    }
+
+    .section {
+      padding: 10px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .package-card {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .package-card:hover {
+      transform: scale(1.03);
+    }
+
+    .package-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .package-info {
+      padding: 15px;
+    }
+
+    .package-info h4 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #003B6F;
+    }
+
+    .price-rating {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #0077B6;
+    }
+
+    footer {
+      background: #ffffff;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #444;
+      margin-top: 40px;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: #444;
+    }
+
+    footer a:hover {
+      color: var(--text-blue);
+    }
+
+    @media(min-width: 768px) {
+      .mobile-header,
+      .hamburger-label,
+      .side-nav {
+        display: none;
+      }
+
+      .desktop-nav {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <div class="mobile-header">
+    <label for="nav-toggle" class="hamburger-label">☰</label>
+    <div class="brand">Go Voila</div>
+  </div>
+
+  <div class="side-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="packages.html">Packages</a>
+    <a href="booking.html">Booking</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <nav class="desktop-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="booking.html">Booking</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  
+
+  <!-- Popular Packages -->
+  <div class="section">
+    <h2 class="section-title">Popular Packages</h2>
+    <div class="packages-grid">
+      <div class="package-card">
+        <img src="https://plus.unsplash.com/premium_photo-1661964304872-7b715cf38cd1?w=400" alt="Goa Beach">
+        <div class="package-info">
+          <h4>Goa Beach Delight</h4>
+          <div class="price-rating">₹15,000 <span>⭐ 4.8</span></div>
+        </div>
+      </div>
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1592548890095-cd2a7aeca5ac?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fG1hbmFsaXxlbnwwfHwwfHx8MA%3D%3D" alt="Manali">
+        <div class="package-info">
+          <h4>Magical Manali</h4>
+          <div class="price-rating">₹18,000 <span>⭐ 4.7</span></div>
+        </div>
+      </div>
+      <div class="package-card">
+        <img src="https://plus.unsplash.com/premium_photo-1661919068698-40e7b78f196a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dubai">
+        <div class="package-info">
+          <h4>Dubai Luxury Escape</h4>
+          <div class="price-rating">₹52,000 <span>⭐ 4.9</span></div>
+        </div>
+      </div>
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1624554305378-0f440dd3a8c1?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGtlcmFsYXxlbnwwfHwwfHx8MA%3D%3D" alt="Kerala">
+        <div class="package-info">
+          <h4>Backwaters of Kerala</h4>
+          <div class="price-rating">₹21,500 <span>⭐ 4.6</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+
+  <!-- Trending Tours -->
+  <div class="section">
+    <h2 class="section-title">Trending Tours</h2>
+    <div class="packages-grid">
+     <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1536295243470-d7cba4efab7b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGxhZGFraHxlbnwwfHwwfHx8MA%3D%3D" alt="Leh Ladakh">
+        <div class="package-info">
+          <h4>Leh Ladakh Adventure</h4>
+          <div class="price-rating">₹35,000 <span>⭐ 4.9</span></div>
+        </div>
+      </div>
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1568889753852-196c487a536e?q=80&w=876&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Kashmir">
+        <div class="package-info">
+          <h4>Scenic Kashmir</h4>
+          <div class="price-rating">₹32,000 <span>⭐ 4.8</span></div>
+        </div>
+      </div>
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1713340546638-5e30e2b7b1fe?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmlzaGlrZXNofGVufDB8fDB8fHww" alt="Rishikesh">
+        <div class="package-info">
+          <h4>Spiritual Rishikesh</h4>
+          <div class="price-rating">₹18,500 <span>⭐ 4.6</span></div>
+        </div>
+      </div>
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1504705759706-c5ee7158f8bb?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Jaipur">
+        <div class="package-info">
+          <h4>Jaipur Heritage Tour</h4>
+          <div class="price-rating">₹20,000 <span>⭐ 4.7</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+
+  <!-- India Tours -->
+  <div class="section">
+    <h2 class="section-title">India Tours</h2>
+    <div class="packages-grid">
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1620887474114-fc96002585cd?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D" alt="Darjeeling">
+        <div class="package-info">
+          <h4>Darjeeling Delight</h4>
+          <div class="price-rating">₹24,000 <span>⭐ 4.6</span></div>
+        </div>
+      </div>
+      <div class="package-card">
+        <img src="https://plus.unsplash.com/premium_photo-1687879693677-d04e793214a3?q=80&w=739&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ooty">
+        <div class="package-info">
+          <h4>Ooty Hill Escape</h4>
+          <div class="price-rating">₹19,500 <span>⭐ 4.5</span></div>
+        </div>
+      </div>
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1616606484004-5ef3cc46e39d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hampi">
+        <div class="package-info">
+          <h4>Historic Hampi</h4>
+          <div class="price-rating">₹22,000 <span>⭐ 4.4</span></div>
+        </div>
+      </div>
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1685346388921-26dd3ae934be?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fG1lZ2hhbGF5YXxlbnwwfHwwfHx8MA%3D%3D" alt="Meghalaya">
+        <div class="package-info">
+          <h4>Meghalaya Wonders</h4>
+          <div class="price-rating">₹26,500 <span>⭐ 4.8</span></div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- International Tours -->
+  <div class="section">
+    <h2 class="section-title">International Tours</h2>
+    <div class="packages-grid">
+<div class="package-card">
+        <img src="https://images.unsplash.com/photo-1496939376851-89342e90adcd?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c2luZ2Fwb3JlfGVufDB8fDB8fHww" alt="Singapore">
+        <div class="package-info">
+          <h4>Singapore Sparkle</h4>
+          <div class="price-rating">₹72,000 <span>⭐ 4.9</span></div>
+        </div>
+      </div>
+      <div class="package-card">
+        <img src="https://plus.unsplash.com/premium_photo-1681582960531-7b5de57fb276?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fHRoYWlsYW5kfGVufDB8fDB8fHww" alt="Thailand">
+        <div class="package-info">
+          <h4>Thailand Getaway</h4>
+          <div class="price-rating">₹60,000 <span>⭐ 4.7</span></div>
+        </div>
+      </div>
+      <div class="package-card">
+        <img src="https://plus.unsplash.com/premium_photo-1677494867836-3f56b1261bc5?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aXRhbHl8ZW58MHx8MHx8fDA%3D" alt="Italy">
+        <div class="package-info">
+          <h4>Italian Romance</h4>
+          <div class="price-rating">₹1,10,000 <span>⭐ 4.9</span></div>
+        </div>
+      </div>
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1hbGRpdmVzfGVufDB8fDB8fHww" alt="Maldives">
+        <div class="package-info">
+          <h4>Maldives Escape</h4>
+          <div class="price-rating">₹98,000 <span>⭐ 4.8</span></div>
+        </div>
+      </div>   
+         <div class="package-card">
+      <img src="https://plus.unsplash.com/premium_photo-1661878091370-4ccb8763756a?w=400&auto=format&fit=crop" alt="Japan">
+      <div class="package-info">
+        <h4>Zen of Japan</h4>
+        <div class="price-rating">₹85,000 <span>⭐ 4.8</span></div>
+      </div>
+    </div>
+    <div class="package-card">
+      <img src="https://images.unsplash.com/photo-1500759285222-a95626b934cb?w=400&auto=format&fit=crop" alt="Cuba">
+      <div class="package-info">
+        <h4>Cuban Vibes</h4>
+        <div class="price-rating">₹72,000 <span>⭐ 4.7</span></div>
+      </div>
+    </div>
+    <div class="package-card">
+      <img src="https://plus.unsplash.com/premium_photo-1661903221734-11c7d6fc11e7?w=400&auto=format&fit=crop" alt="Andaman">
+      <div class="package-info">
+        <h4>Azure Andaman</h4>
+        <div class="price-rating">₹38,000 <span>⭐ 4.6</span></div>
+      </div>
+    </div>
+    <div class="package-card">
+      <img src="https://images.unsplash.com/photo-1527668752968-14dc70a27c95?q=80&auto=format&fit=crop" alt="Switzerland">
+      <div class="package-info">
+        <h4>Serenity in Switzerland</h4>
+        <div class="price-rating">₹1,45,000 <span>⭐ 4.9</span></div>
+      </div>
+    </div>
+    <div class="package-card">
+      <img src="https://images.unsplash.com/photo-1643667802197-ce810e01619d?w=400&auto=format&fit=crop" alt="Egypt">
+      <div class="package-info">
+        <h4>Mystique of Egypt</h4>
+        <div class="price-rating">₹92,000 <span>⭐ 4.7</span></div>
+      </div>
+    </div>
+    <div class="package-card">
+      <img src="https://images.unsplash.com/photo-1544984243-ec57ea16fe25?auto=format&fit=crop" alt="Brazil">
+      <div class="package-info">
+        <h4>Beats of Brazil</h4>
+        <div class="price-rating">₹88,000 <span>⭐ 4.6</span></div>
+      </div>
+    </div>
+    <div class="package-card">
+      <img src="https://images.unsplash.com/photo-1525874684015-58379d421a52?q=80&auto=format&fit=crop" alt="Rome">
+      <div class="package-info">
+        <h4>Ruins of Rome</h4>
+        <div class="price-rating">₹99,000 <span>⭐ 4.8</span></div>
+      </div>
+    </div>
+    <div class="package-card">
+      <img src="https://images.unsplash.com/photo-1533441865127-f4806aaa12cc?w=400&auto=format&fit=crop" alt="Greece">
+      <div class="package-info">
+        <h4>Glory of Greece</h4>
+        <div class="price-rating">₹94,000 <span>⭐ 4.9</span></div>
+      </div>
+    </div>
+    <div class="package-card">
+      <img src="https://images.unsplash.com/photo-1684814824182-7a1b9b3dfed9?q=80&auto=format&fit=crop" alt="Mauritius">
+      <div class="package-info">
+        <h4>Majestic Mauritius</h4>
+        <div class="price-rating">₹89,000 <span>⭐ 4.7</span></div>
+      </div>
+    </div>
+    <div class="package-card">
+      <img src="https://images.unsplash.com/photo-1599094207433-1660b9b268d2?w=400&auto=format&fit=crop" alt="Russia">
+      <div class="package-info">
+        <h4>Russian Reverie</h4>
+        <div class="price-rating">₹86,000 <span>⭐ 4.6</span></div>
+      </div>
+    </div>
+    <div class="package-card">
+      <img src="https://images.unsplash.com/photo-1717417926142-dc5ce3772690?q=80&auto=format&fit=crop" alt="South India">
+      <div class="package-info">
+        <h4>Soul of South India</h4>
+        <div class="price-rating">₹28,000 <span>⭐ 4.5</span></div>
+      </div>
+    </div>
+    <div class="package-card">
+      <img src="https://images.unsplash.com/photo-1668396713395-fe7d442fdf44?w=400&auto=format&fit=crop" alt="Dubai">
+      <div class="package-info">
+        <h4>Arabian Nights of Dubai</h4>
+        <div class="price-rating">₹58,000 <span>⭐ 4.9</span></div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025, All rights reserved.<br>
+    Designed and Developed by <a href="https://github.com/vainawiyasri" target="_blank">Vainawiyasri</a>
+  </footer>
+
+</body>
+</html>
