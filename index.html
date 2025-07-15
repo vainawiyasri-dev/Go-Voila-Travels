@@ -4,10 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Go Voila - Discover, Dream, Depart</title>
-
-  <!-- ✅ Google Font with multiple weights -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --primary: #ffffff;
@@ -22,19 +18,26 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+      font-family: Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
 
     body {
       background: url('https://cdn.pixabay.com/photo/2015/01/13/13/21/paradise-598201_1280.jpg') no-repeat center center fixed;
       background-size: cover;
       background-attachment: fixed;
-      font-weight: 500;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       background-position: center;
       min-height: 100vh;
       color: var(--text-blue);
+      font-family: Arial, sans-serif;
+      font-weight: 600;
     }
 
     body::before {
@@ -67,8 +70,8 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 1.4em;
-      font-weight: 600;
+      font-size: 1.40em;
+      font-weight: bold;
       color: var(--text-blue);
     }
 
@@ -135,7 +138,7 @@
 
     .desktop-nav a {
       text-decoration: none;
-      font-weight: 600;
+      font-weight: bold;
       color: var(--text-blue);
     }
 
@@ -148,14 +151,14 @@
       padding: 10px 15px;
       text-align: center;
       font-size: var(--hero-size);
-      color: #ffffff;
+      color: rgb(255, 255, 255);
     }
 
     .section-title {
       text-align: center;
       font-size: 1.5rem;
       margin: 40px 0 20px;
-      color: #ffffff;
+      color: rgb(255, 255, 255);
     }
 
     .slider-container {
@@ -205,7 +208,7 @@
       text-align: center;
       border-radius: 10px;
       border: 1px solid white;
-      font-weight: 600;
+      font-weight: bold;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       display: flex;
       align-items: center;
@@ -267,15 +270,11 @@
       }
 
       .hero {
-        font-size: 1.6rem;
+        font-size: var(--hero-size);
       }
 
       .section-title {
-        font-size: 1.3rem;
-      }
-
-      .stat, .testimonial {
-        font-size: 0.95rem;
+        font-size: 1.5rem;
       }
     }
   </style>
