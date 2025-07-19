@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About – Go Voila</title>
-  <style>
+  <title>About us</title>
+ <style>
     :root {
       --primary: #ffffff;
       --light-blue: #add8e6;
@@ -19,14 +19,17 @@
       padding: 0;
       box-sizing: border-box;
       font-family: Arial, sans-serif;
-      font-weight: 500;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      
     }
 
     body {
       background: url('https://images.unsplash.com/photo-1643327070016-9d2ef5044149?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGZlbWFsZSUyMGNlbyUyMHdvcmtpbmd8ZW58MHx8MHx8fDA%3D') no-repeat center center fixed;
       background-size: cover;
+     background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       min-height: 100vh;
       color: var(--text-blue);
     }
@@ -139,19 +142,29 @@
     }
 
     .hero {
-      margin-top: 70px;
-      padding: 20px;
-      text-align: center;
-      font-size: 1.4rem;
-      color: white;
-      font-weight: 600;
+      margin-top: 75px;
+      padding: 10px 15px;
+      margin-bottom: -30px;
+      text-align:center;
+      font-size: 1.5rem;;
+      color: rgb(255, 255, 255);
+      font-weight: 500;
     }
 
-    .hero h1 {
-      margin-top: -5px;
-      font-size: 25px;
-      font-weight: bold;
+    .hero h1
+    {
+     text-align: center;
+      font-size: 1.29rem;
+      margin:  -5px 0 -10px;
+      color: rgb(255, 255, 255);
+      font-weight: 700;
     }
+    .section h1,
+    .section h2 { text-align: center;
+      font-size: 1.29rem;
+      margin:  50px 0 30px;
+      color: rgb(255, 255, 255);
+      font-weight: 700;}
 
     .section {
       background: transparent;
@@ -162,22 +175,11 @@
       border-radius: 10px;
     }
 
-    .section h1,
-    .section h2 {
-      text-align: center;
-      align-items:center;
-      color: white;
-      margin-bottom: 40px;
-      margin-top: 20px;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
     .section p {
       text-align: justify;
       line-height: 1.6;
       font-size: 1rem;
-      margin-top: -30px;
+      margin-top: 10px;
       margin-bottom: 20px;
       color: #ffffff;
       word-spacing: -1px;
@@ -216,38 +218,35 @@
     }
 
     .social-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 30px;
-  width: 100%;
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+      width: 100%;
+    }
 
-.social-buttons a {
-  background-color: var(--text-blue); /* or use a real color like #0077cc */
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  text-align: center;
-  width: 140px; /* makes all buttons same size */
-  transition: background 0.3s ease;
-}
+    .social-buttons a {
+      background-color: var(--text-blue);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+      width: 140px;
+      transition: background 0.3s ease;
+    }
 
-/* Hover effect */
-.social-buttons a:hover {
-  background-color: #3399cc;
-}
+    .social-buttons a:hover {
+      background-color: #3399cc;
+    }
 
-/* Fix for odd last button on new row */
-.social-buttons a:last-child:nth-child(odd):nth-last-child(1) {
-  flex-basis: 100%;
-  text-align: center;
-}
-
+    .social-buttons a:last-child:nth-child(odd):nth-last-child(1) {
+      flex-basis: 100%;
+      text-align: center;
+    }
 
     footer {
       background: #ffffff;
