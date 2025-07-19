@@ -212,26 +212,38 @@
     }
 
     .social-buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 30px;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 30px;
+  width: 100%;
+}
 
-    .social-buttons a {
-      background-color: var(--text-blue);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
+.social-buttons a {
+  background-color: var(--text-blue); /* or use a real color like #0077cc */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  width: 140px; /* makes all buttons same size */
+  transition: background 0.3s ease;
+}
 
-    .social-buttons a:hover {
-      background-color: #3399cc;
-    }
+/* Hover effect */
+.social-buttons a:hover {
+  background-color: #3399cc;
+}
+
+/* Fix for odd last button on new row */
+.social-buttons a:last-child:nth-child(odd):nth-last-child(1) {
+  flex-basis: 100%;
+  text-align: center;
+}
+
 
     footer {
       background: #ffffff;
